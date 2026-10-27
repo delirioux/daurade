@@ -558,7 +558,7 @@ static void note_off_now(da_groove *g, int i)
 static void note(da_groove *g, int part, int n, int vel, float len_frames)
 {
     if (part == DA_DRUMS) {                        /* a drum rings for its own length: then its voice is free again */
-        static const float RING[DA_DR_COUNT] = {0.40f, 0.24f, 0.30f, 0.09f, 0.45f, 1.0f};
+        static const float RING[DA_DR_COUNT] = {0.80f, 0.24f, 0.30f, 0.09f, 0.45f, 1.0f};
         len_frames = RING[n % DA_DR_COUNT] * g->sr;
     }
     {

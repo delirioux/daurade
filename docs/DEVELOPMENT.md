@@ -65,7 +65,8 @@ Daurade's files are `firmware/src/da_*`, `tests/da_*`, `tools/da_*`, `web/da_*` 
   Measured over 40 s through Felucca's engines: FILTER HOUSE steals none, FUNK 7, ROBOT POP 8, DISCO 16 (its
   string swells), out of 700 to 1,100 notes.
 - **Very crisp drums of our own.** No complete CC0 kit could be fetched, so `tools/da_drums.py` synthesizes seven:
-  the kick's body starting at phase 0 with its own beater click, the snare and clap with shaped noise, the hats
+  the kicks deep (PUNCH falls from 170 to 41 Hz, ROUND from 110 to 36 Hz, ringing 0.8 and 1 s; 0.1's second
+  build, 3 dB more below 50 Hz in the mix) with the body starting at phase 0 and its own beater click, the snare and clap with shaped noise, the hats
   from high-passed metallic partials. Stored at 44.1 kHz (the rest of Felucca's sets are 22.05) and kept whole, with
   no fade, so the attack is the first sample. VEL reaches AMP through the matrix's slot 4. DRUM swaps in Felucca's
   DRUM engine kits (TIGHT, 80s).

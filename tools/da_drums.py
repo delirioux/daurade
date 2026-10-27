@@ -156,8 +156,8 @@ def crash():
 
 
 KIT = [
-    ("00_kick_punch", lambda: kick(185, 47, 0.030, 0.30, 1.0, 0.48, 1.8)),
-    ("01_kick_round", lambda: kick(120, 44, 0.055, 0.42, 0.45, 0.62, 1.2)),
+    ("00_kick_punch", lambda: kick(170, 41, 0.042, 0.50, 1.0, 0.80, 2.2)),
+    ("01_kick_round", lambda: kick(110, 36, 0.075, 0.75, 0.45, 1.00, 1.5)),
     ("02_snare", snare),
     ("03_clap", clap),
     ("04_hat", lambda: hat(0.032, 0.11, 1.0)),
