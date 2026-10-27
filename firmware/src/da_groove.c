@@ -3,7 +3,7 @@
  * arc; in time, sixteenth by sixteenth, with swing and a human feel; the sweep and the pump every block. */
 #include "da_groove.h"
 
-#include <string.h>
+#include "tuna_sys.h"   /* memcpy and memset: the FM-1 has no C library (TUNA_FREESTANDING) */
 
 /* ---- small helpers ---------------------------------------------------------------------------------------- */
 static int clampi(int v, int lo, int hi) { return v < lo ? lo : v > hi ? hi : v; }
@@ -270,7 +270,8 @@ static void chord_name(da_chord *c, int third, int fifth, int seventh, bool nint
         q = "";
     char b[10];
     cpy(b, NOTE_NAMES[c->root % 12], sizeof b);
-    int k = (int)strlen(b);
+    int k = 0;
+    while (b[k]) k++;
     for (int i = 0; q[i] && k < 7; ++i)
         b[k++] = q[i];
     b[k] = 0;
