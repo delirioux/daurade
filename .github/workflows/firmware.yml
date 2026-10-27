@@ -42,7 +42,18 @@ jobs:
         run: sh tests/da_tests.sh
 
       - name: Build Daurade
-        run: FELUCCA_DAURADE=1 ./build.sh
+        # On a failure the compiler's errors and the log's tail become annotations: readable through the API
+        # (check runs), where the raw log is not always reachable.
+        run: |
+          mkdir -p build
+          set -o pipefail
+          if FELUCCA_DAURADE=1 ./build.sh 2>&1 | tee build/build.log; then exit 0; fi
+          grep -E 'error:|undefined reference|overflow|No space|Error [0-9]' build/build.log | head -8 | while IFS= read -r l; do
+            echo "::error title=build::$l"
+          done
+          tail -n 40 build/build.log | sed -e 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > build/tail.txt
+          echo "::error title=build log (last 40 lines)::$(cat build/tail.txt)"
+          exit 1
 
       - name: No soft-float routines (Daurade's floats run on the FPU; a routine like __mulsf3 here crashed an FM-1 running Tuna)
         run: |
