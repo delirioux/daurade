@@ -160,7 +160,7 @@ void da_style_apply(da_settings *s, int style)
     s->drive = st->drive;
     s->phaser = st->phaser;
     s->crush = 0;
-    s->vowels = DA_VOWELS_AH_EE;
+    s->vowels = style == DA_ST_SLOW_JAM ? DA_VOWELS_PHRASE : DA_VOWELS_AH_EE;
     s->talk = DA_TALK_8;
     s->glide = 25;
     s->shift = 0;
@@ -575,6 +575,8 @@ static void note(da_groove *g, int part, int n, int vel, float len_frames)
             note_off_now(g, o);
         }
     }
+    if (part == DA_LEAD)                           /* PHRASE: this note's vowel, before the sound hears of it */
+        g->lead_syl_now = (uint8_t)(g->lead_syl++ % DA_PHRASE_LEN);
     emit(g, 1, part, n, vel);
     feed(g, part, n, vel);
     if (g->step >= 0) {
@@ -993,6 +995,8 @@ static void play_lead(da_groove *g, int i, uint32_t delay, float sf, float hum)
     if (v < 0.45f && (g->bar % 8) < 4)
         return;
     int hp = (g->bar % 2) * 16 + i;
+    if (hp == 0)                                   /* each hook sings the phrase from its first vowel */
+        g->lead_syl = 0;
     if (g->hook[hp] == -128)
         return;
     int len = g->hook_len[hp];

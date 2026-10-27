@@ -25,7 +25,11 @@ static void sound(void *ctx, const da_event *e)
     (void)ctx;
     track_t *t = &trk[e->part % DA_PARTS];
     int n = e->part == DA_DRUMS ? das_drum_note(&G.s, e->note) : e->note;
-    if (e->on) { trk_note_on(t, (uint32_t)n, e->vel); n_on++; }
+    if (e->on) {
+        if (e->part == DA_LEAD) das_lead_note(t, &G);
+        trk_note_on(t, (uint32_t)n, e->vel);
+        n_on++;
+    }
     else { trk_note_off(t, (uint32_t)n); n_off++; }
 }
 

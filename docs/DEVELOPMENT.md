@@ -71,7 +71,9 @@ Daurade's files are `firmware/src/da_*`, `tests/da_*`, `tools/da_*`, `web/da_*` 
   no fade, so the attack is the first sample. VEL reaches AMP through the matrix's slot 4. DRUM swaps in Felucca's
   DRUM engine kits (TIGHT, 80s).
 - **The robot is the VOICE engine**: full buzz, a high Q, two vowels a note in time with the tempo (VOWELS, SHIFT,
-  TALK, GLIDE on the VOICE page).
+  TALK, GLIDE on the VOICE page). PHRASE sings AH EH OH EH AH EH EH EH, a vowel per note: the groove counts the
+  lead's notes from each hook's start, and the firmware sets the VOICE engine's two vowels just before each note-on
+  (this note's, gliding into the next's).
 - **Even levels.** `tests/da_audition.c` measures each sound's loudness alone; the trims bring them within a few dB,
   so turning a SOUND card does not jump. The kits sat 20 dB above the rest before the trims.
 - **On the bar line.** A style or a song turned in comes in on the next bar, so a groove never changes mid-bar;

@@ -23,6 +23,7 @@ static int fails, checks;
 static da_groove g;
 static int on[DA_PARTS], off[DA_PARTS], sounding[DA_PARTS][128], out_of_key, bad_pc;
 static uint32_t hash;
+static int syl_prev = -1, syl_bad, syl_resets, syl_notes;
 static void sound(void *ctx, const da_event *e)
 {
     (void)ctx;
@@ -36,6 +37,13 @@ static void sound(void *ctx, const da_event *e)
         }
         if (e->part == DA_LEAD && g.solo_left > 0 && da_snap(&g.s, e->note) != e->note)
             out_of_key++;
+        if (e->part == DA_LEAD) {                  /* PHRASE: each lead note the next vowel, or the phrase again */
+            int k = g.lead_syl_now;
+            if (k == 0 && syl_prev >= 0) syl_resets++;
+            else if (syl_prev >= 0 && k != (syl_prev + 1) % DA_PHRASE_LEN) syl_bad++;
+            syl_prev = k;
+            syl_notes++;
+        }
     } else {
         off[e->part]++;
         if (sounding[e->part][e->note] > 0) sounding[e->part][e->note]--;
@@ -70,6 +78,18 @@ int main(void)
         CHECK(bad_pc < on[DA_STABS] / 8 + 8, "%s: %d stab and bass notes outside the scale", da_style_name(st), bad_pc);
         CHECK(g.loop[0].name[0], "%s: its first chord has a name (%s)", da_style_name(st), g.loop[0].name);
     }
+    /* SLOW JAM sings the phrase: a vowel per lead note, in order, from the first at each hook */
+    da_style_apply(&g.s, DA_ST_SLOW_JAM);
+    CHECK(g.s.vowels == DA_VOWELS_PHRASE, "SLOW JAM: VOWELS is PHRASE");
+    g.s.arc = 0;
+    da_rebuild(&g);
+    syl_prev = -1; syl_bad = syl_resets = syl_notes = 0;
+    da_play(&g, true);
+    run_bars(16);
+    da_play(&g, false);
+    CHECK(syl_notes > 16 && syl_bad == 0 && syl_resets > 0, "the phrase in order (%d notes, %d out of order, %d hooks)",
+          syl_notes, syl_bad, syl_resets);
+    g.s.arc = 1;
     /* the same song twice: the same notes at the same times */
     uint32_t h1, h2;
     da_style_apply(&g.s, DA_ST_FUNK);

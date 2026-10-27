@@ -171,8 +171,21 @@ static inline int16_t das_talk(const da_settings *s)
     return das_clamp((int)(v + 0.5f), 0, 127);
 }
 /* the VOWELS card: VOWL and VOWL2 (A 0, E 32, I 64, O 95, U 127: eng_formant.c's five) */
-static const uint8_t DAS_VOWELS[DA_VOWELS_COUNT][2] = {{0, 64}, {95, 0}, {127, 64}, {64, 0}, {0, 95}};
-static const char *const DAS_VOWEL_NAMES[DA_VOWELS_COUNT] = {"AH-EE", "OH-AH", "OO-EE", "EE-AH", "AH-OH"};
+static const uint8_t DAS_VOWELS[DA_VOWELS_COUNT][2] = {{0, 64}, {95, 0}, {127, 64}, {64, 0}, {0, 95}, {0, 32}};
+static const char *const DAS_VOWEL_NAMES[DA_VOWELS_COUNT] = {"AH-EE", "OH-AH", "OO-EE", "EE-AH", "AH-OH", "PHRASE"};
+/* PHRASE: AH EH OH EH AH EH EH EH, a vowel per note, each gliding into the next over TALK */
+static const uint8_t DAS_PHRASE[DA_PHRASE_LEN] = {0, 32, 95, 32, 0, 32, 32, 32};
+/* the two vowels the robot talks between now: the card's pair, or PHRASE's this note and the next */
+static inline void das_vowel_pair(const da_groove *g, uint8_t out[2])
+{
+    if (g->s.vowels == DA_VOWELS_PHRASE) {
+        out[0] = DAS_PHRASE[g->lead_syl_now % DA_PHRASE_LEN];
+        out[1] = DAS_PHRASE[(g->lead_syl_now + 1u) % DA_PHRASE_LEN];
+    } else {
+        out[0] = DAS_VOWELS[g->s.vowels % DA_VOWELS_COUNT][0];
+        out[1] = DAS_VOWELS[g->s.vowels % DA_VOWELS_COUNT][1];
+    }
+}
 static const char *const DAS_TALK_NAMES[DA_TALK_COUNT] = {"1/16", "1/8", "1/4", "1/2"};
 
 /* a part's track from the cards, over its sound's preset: the level, the place, the sends, TONE on the parts the
@@ -233,8 +246,10 @@ static inline void das_track(track_t *t, const da_groove *g, int part)
     if (snd->voice >= 0)
         t->p[P_VOICE] = (int16_t)(snd->voice == DAS_LEGATO ? V_LEGATO : snd->voice == DAS_MONO ? V_MONO : V_POLY);
     if (snd->engine == DAS_VOICE) {              /* the VOICE page */
-        t->p[P_E0] = DAS_VOWELS[s->vowels % DA_VOWELS_COUNT][0];
-        t->p[P_E1] = DAS_VOWELS[s->vowels % DA_VOWELS_COUNT][1];
+        uint8_t vw[2];
+        das_vowel_pair(g, vw);
+        t->p[P_E0] = vw[0];
+        t->p[P_E1] = vw[1];
         t->p[P_E2] = das_talk(s);
         t->p[P_E3] = s->shift;
         if (part == DA_LEAD && s->glide)
@@ -282,6 +297,17 @@ static inline void das_song(const da_settings *s)
     song.g[G_RSIZE] = (int16_t)(60 + s->reverb * 30 / 100);
     song.g[G_RDAMP] = 50;
     song.g[G_RTYPE] = 0;                          /* (Felucca's ROOM model) */
+}
+
+/* a LEAD note-on, just before it sounds: with PHRASE, the robot takes this note's vowel (the audio ISR) */
+static inline void das_lead_note(track_t *t, const da_groove *g)
+{
+    if (g->s.vowels != DA_VOWELS_PHRASE || das_of(g, DA_LEAD)->engine != DAS_VOICE)
+        return;
+    uint8_t vw[2];
+    das_vowel_pair(g, vw);
+    t->p[P_E0] = vw[0];
+    t->p[P_E1] = vw[1];
 }
 
 /* the block's controls into the tracks (the audio ISR, before the mix): the sweep and the pump */

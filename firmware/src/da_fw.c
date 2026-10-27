@@ -33,8 +33,11 @@ static void da_sound(void *ctx, const da_event *e)
     (void)ctx;
     uint32_t p = e->part % DA_PARTS;
     int n = p == DA_DRUMS ? das_drum_note(&da_g.s, e->note) : e->note;
-    if (e->on)
+    if (e->on) {
+        if (p == DA_LEAD)
+            das_lead_note(&trk[p], &da_g);
         trk_note_on(&trk[p], (uint32_t)n, e->vel);
+    }
     else
         trk_note_off(&trk[p], (uint32_t)n);
     /* MIDI out: STABS on channel 1, BASS 2, LEAD 3, the drums 10 (General MIDI's) */

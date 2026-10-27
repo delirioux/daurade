@@ -497,7 +497,8 @@ static void du_panel_voice(da_ui *u)
     const da_groove *g = u->g;
     static const int32_t VX[5] = {120, 88, 40, 200, 152}, VY[5] = {18, 96, 96, 96, 18};   /* A E I O U as drawn */
     static const char *const VN[5] = {"AH", "EH", "EE", "OH", "OO"};
-    const uint8_t *vw = DAS_VOWELS[g->s.vowels % DA_VOWELS_COUNT];
+    uint8_t vw[2];
+    das_vowel_pair(g, vw);
     int a = du_clampi((vw[0] + 16) / 32, 0, 4), b = du_clampi((vw[1] + 16) / 32, 0, 4);
     /* the triangle of the five: AH at the top, EE OH at the bottom corners, EH and OO between */
     cv_line(40, 96, 120, 18, T_LINE);

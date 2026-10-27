@@ -36,7 +36,9 @@ enum { DA_FILLS_OFF, DA_FILLS_8, DA_FILLS_4, DA_FILLS_2, DA_FILLS_COUNT };
 enum { DA_KIT_CRISP, DA_KIT_SESSION, DA_KIT_MACHINE, DA_KIT_COUNT };
 enum { DA_KICK_PUNCH, DA_KICK_ROUND, DA_KICK_COUNT };
 enum { DA_SNARE_CLAP, DA_SNARE_SNARE, DA_SNARE_BOTH, DA_SNARE_COUNT };
-enum { DA_VOWELS_AH_EE, DA_VOWELS_OH_AH, DA_VOWELS_OO_EE, DA_VOWELS_EE_AH, DA_VOWELS_AH_OH, DA_VOWELS_COUNT };
+enum { DA_VOWELS_AH_EE, DA_VOWELS_OH_AH, DA_VOWELS_OO_EE, DA_VOWELS_EE_AH, DA_VOWELS_AH_OH,
+       DA_VOWELS_PHRASE, DA_VOWELS_COUNT };   /* PHRASE: a vowel per note, AH EH OH EH AH EH EH EH, each hook again */
+#define DA_PHRASE_LEN 8
 enum { DA_TALK_16, DA_TALK_8, DA_TALK_4, DA_TALK_2, DA_TALK_COUNT };
 enum { DA_DTIME_16, DA_DTIME_8, DA_DTIME_3_16, DA_DTIME_4, DA_DTIME_COUNT };
 enum { DA_SPEED_8, DA_SPEED_TRIP, DA_SPEED_16, DA_SPEED_COUNT };
@@ -131,6 +133,7 @@ typedef struct {
     uint16_t hits[DA_PARTS], hits_last[DA_PARTS];
     uint16_t drum_hits[DA_DR_COUNT], drum_last[DA_DR_COUNT];
     uint32_t lead_on_clock;                        /* the lead's latest note-on (the VOICE page's vowel) */
+    uint8_t lead_syl, lead_syl_now;                /* PHRASE: the next vowel of the phrase, the one sounding */
     /* the notes sounding: their note-off at clock off */
     struct { uint8_t note, part; uint32_t off; } held[DA_HELD];
     int nheld;
