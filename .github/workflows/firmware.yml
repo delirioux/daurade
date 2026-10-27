@@ -104,7 +104,7 @@ jobs:
           path: dist/
 
       - name: Clang's WASI sysroot (for Daurade in the browser; npm's @yowasp/clang carries one)
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         continue-on-error: true            # (the site goes out without it)
         run: |
           sudo apt-get install -y lld
@@ -113,23 +113,23 @@ jobs:
           mkdir -p pkg sys && tar -xzf yowasp-clang-*.tgz -C pkg && tar -xf pkg/package/gen/llvm-resources.tar -C sys
 
       - name: Daurade in the browser (the same firmware, WebAssembly)
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         continue-on-error: true            # (the site goes out without it)
         run: |
           WASI_SYSROOT="$HOME/wasi/sys" sh web/emu/da_build.sh
           node web/emu/da_emu_test.mjs build/da_emu/daurade.wasm
 
-      - name: The site, on main only (the start page and the web installer with this package)
-        if: github.ref == 'refs/heads/main'
+      - name: The site, from main and dev (the start page and the web installer with this package; dev's marked as a test build)
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         run: python3 web/da_make_site.py build/felucca.fwsc "$([ "$GITHUB_REF_NAME" = main ] || echo "$GITHUB_REF_NAME-")${GITHUB_SHA::7}" _site
 
       - uses: actions/upload-pages-artifact@v3
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         with:
           path: _site
 
   pages:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     needs: build
     runs-on: ubuntu-24.04
     permissions:

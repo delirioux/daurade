@@ -107,7 +107,8 @@ Colours: NEBULA, Daurade's own (deep indigo, electric blue, hot magenta), and al
 ## Building
 
 As Tuna and Flyfish (see [BUILDING.md](BUILDING.md)), with `FELUCCA_DAURADE=1 ./build.sh`. GitHub Actions builds
-every push to `main` and `dev`; a push to `main` also publishes the site with the installer (`web/da_make_site.py`;
+every push to `main` and `dev`, and publishes the site with the installer from either (`web/da_make_site.py`; dev's
+marked as a test build;
 the repository needs Settings > Pages > Source: GitHub Actions). `sh tests/da_tests.sh` runs the host tests;
 `sh tests/da_felucca.sh OUTDIR` renders a groove through Felucca's engines to a WAV; `sh tests/da_audition.sh`
 measures every sound's loudness; `web/emu/da_build.sh` builds the browser version (Emscripten, or clang with a WASI
