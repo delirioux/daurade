@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Daurade's firmware package for the FM-1, built on GitHub's Linux runners: JieLi's toolchain and three files of the
 # JieLi AC79 SDK (Apache-2.0) come from JieLi's own servers, as BUILDING.md describes. The package is the run's
-# artifact "daurade-firmware" (Actions > the run > Artifacts). A push to main also makes the site on GitHub Pages
-# (web/da_make_site.py): the start page and the web installer with the package; it needs Settings > Pages > Source:
-# GitHub Actions. A push to dev builds the package only: install it with the installer's "Install a test build".
+# artifact "daurade-firmware" (Actions > the run > Artifacts). Every push also makes the site on GitHub Pages
+# (web/da_make_site.py): main's release at the root, dev's test build under dev/, each with its installer; a run
+# builds the other branch too, so either push publishes both. It needs Settings > Pages > Source: GitHub Actions,
+# and dev allowed in the github-pages environment.
 # The host tests run first.
 name: Firmware
 
@@ -119,9 +120,30 @@ jobs:
           WASI_SYSROOT="$HOME/wasi/sys" sh web/emu/da_build.sh
           node web/emu/da_emu_test.mjs build/da_emu/daurade.wasm
 
-      - name: The site, from main and dev (the start page and the web installer with this package; dev's marked as a test build)
+      - name: The other branch (the site carries main's release at its root and dev's test build under dev/)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
-        run: python3 web/da_make_site.py build/felucca.fwsc "$([ "$GITHUB_REF_NAME" = main ] || echo "$GITHUB_REF_NAME-")${GITHUB_SHA::7}" _site
+        continue-on-error: true            # (the site goes out with this branch only)
+        run: |
+          OTHER=$([ "$GITHUB_REF_NAME" = main ] && echo dev || echo main)
+          git fetch --depth 1 origin "$OTHER"
+          OSHA=$(git rev-parse FETCH_HEAD)
+          if [ "$OSHA" = "$GITHUB_SHA" ]; then
+            cp build/felucca.fwsc build/other.fwsc
+          else
+            git worktree add ../other "$OSHA"
+            (cd ../other && git submodule update --init --depth 1 && FELUCCA_DAURADE=1 ./build.sh)
+            cp ../other/build/felucca.fwsc build/other.fwsc
+          fi
+          echo "OTHER=$OTHER" >> "$GITHUB_ENV"
+          echo "OSHA=${OSHA::7}" >> "$GITHUB_ENV"
+
+      - name: The site (main's release at the root, dev's test build under dev/, each with its installer)
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+        run: |
+          if [ "$GITHUB_REF_NAME" = main ]; then MAIN=build/felucca.fwsc MS=${GITHUB_SHA::7} DEV=build/other.fwsc DS=$OSHA
+          else MAIN=build/other.fwsc MS=$OSHA DEV=build/felucca.fwsc DS=${GITHUB_SHA::7}; fi
+          if [ -f "$DEV" ]; then DA_SITE_TRY=0 python3 web/da_make_site.py "$DEV" "dev-$DS" _site/dev; fi
+          if [ -f "$MAIN" ]; then python3 web/da_make_site.py "$MAIN" "$MS" _site; fi
 
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
@@ -131,6 +153,9 @@ jobs:
   pages:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     needs: build
+    concurrency:                          # a push to main and to dev at once: one deploy after the other
+      group: pages
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     permissions:
       pages: write

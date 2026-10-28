@@ -12,12 +12,16 @@
 
   web/da_make_site.py build/felucca.fwsc VERSION OUT_DIR
 
+The workflow makes dev's test build in OUT_DIR/dev first (DA_SITE_TRY=0: no try/ there), then main's release in
+OUT_DIR, whose start page then links the test build.
+
 VERSION is the build's (the commit); Daurade's own (X.Y) is DA_VERSION in firmware/src/da_version.h.
 
 The package must be one made by tools/fm1pkg_make.py (Felucca's own loader, no vendor files); its identity
 (FM-1_9xx) is what the FM-1 must report after the install.
 """
 import json
+import os
 import re
 import shutil
 import sys
@@ -82,12 +86,14 @@ def main(pkg, build, out):
     shutil.copy(ROOT / "docs/daurade-logo.png", out / "daurade-logo.png")
     emu = ROOT / "build/da_emu"
     try_link = ""
-    if (emu / "daurade.wasm").exists():
+    if (emu / "daurade.wasm").exists() and os.environ.get("DA_SITE_TRY") != "0":
         dst = out / "try"
         if dst.exists():
             shutil.rmtree(dst)
         shutil.copytree(emu, dst, ignore=shutil.ignore_patterns("obj", "shim"))
         try_link = '<a class="b" href="try/">Try it in the browser</a>'
+    if not test and (out / "dev" / "index.html").exists():
+        try_link += '<br><a href="dev/">The test build from the dev branch</a>'
     (out / "index.html").write_text(f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daurade</title><link rel="icon" href="daurade-logo.png">
