@@ -6,8 +6,9 @@ The first release.
   SEQUENCER, FUNK, BALLAD, FINALE); a song for every ALGORITHM number; style and song change on the bar line.
 - SWEEP, PUMP, VOICE and ENERGY on the four knobs; DROP on REC (tapped or held), SOLO on SEQ.
 - The keys play the lead, snapped to the scale; their LEDs show the chord.
-- Forty sounds on Felucca's engines, levels evened out; a robot on the VOICE engine.
-- A very crisp drum kit of Daurade's own (CC0), and Felucca's DRUM engine kits.
+- Forty sounds on Felucca's engines, levels evened out; a robot on the VOICE engine, singing a vowel phrase in
+  SLOW JAM (PHRASE).
+- A very crisp drum kit of Daurade's own (CC0) with deep kicks, and Felucca's DRUM engine kits.
 - The arc: intro, main, build, drop, solo, breakdown.
 - Eight sets; settings saved while stopped; MIDI out on channels 1, 2, 3 and 10.
 - The NEBULA palette, by default.
