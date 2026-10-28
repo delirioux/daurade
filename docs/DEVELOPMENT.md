@@ -4,8 +4,7 @@ The working notes behind Daurade: the agreements, how the work flows, why the co
 stands and what comes next. What Daurade is and how to play it is in the [README](../README.md) and the
 [manual](MANUAL.md).
 
-Status: 27 October 2026. Version 0.1 written and tested on the host and in the browser emulator; not yet built by
-CI or tried on an FM-1.
+Status: 28 October 2026. Version 0.1 built by CI, installed from the site and playing on an FM-1; released on `main`.
 
 ## Agreements
 
@@ -99,8 +98,8 @@ FM-1. The browser build boots, plays and draws the same screens.
 
 ## Plan
 
-1. **On the FM-1.** The CI link and its sizes; then on the device: the splash, the keys and knobs, the timing, the
-   CPU at the busiest style, the pump's feel, the settings and sets surviving a power cycle, MIDI out.
+1. **On the FM-1.** It installs, boots and plays (the deep kicks, the robot). Still to measure: the CPU at the
+   busiest style over a long session, the settings and sets surviving a power cycle, MIDI out.
 2. **The sound.** Tune the trims and the sweep's range by ear on the FM-1's speaker and on headphones; a second
    kick for SESSION if the 80s kit is not enough.
 3. **The browser.** The Try page on the site, as Tuna's.

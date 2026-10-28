@@ -10,8 +10,8 @@ very crisp drums. Ten styles on two sides, CHROME and SESSION. You steer it with
 solo, play the lead yourself on the keys. Built on [Tuna](https://github.com/delirioux/tuna) and
 [Felucca](docs/FELUCCA.md).
 
-> **Version 0.1, a test build.** Not yet tried on an FM-1. Built with no warranty. Felucca's or Tuna's installer, or
-> the official V15, takes the FM-1 back.
+> **Version 0.1.** Runs on the FM-1. Built with no warranty. Felucca's or Tuna's installer, or the official V15,
+> takes the FM-1 back.
 
 <p align="center"><img src="docs/daurade-play.gif" alt="PLAY: the chords, the filter's sweep, the pump" width="240"></p>
 
