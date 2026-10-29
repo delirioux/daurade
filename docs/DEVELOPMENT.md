@@ -23,9 +23,10 @@ Status: 28 October 2026. Version 0.1 built by CI, installed from the site and pl
 
 ## How changes reach GitHub
 
-As Tuna and Flyfish: Claude works in a sandbox that cannot push and delivers git bundles; they are pushed with the
-sync script (`FM1-Sync.sh` on Linux in `~/fm1`). A push to `dev` builds a test package (Actions > the run >
-Artifacts > `daurade-firmware`), installed with the installer's "Install a test build".
+Claude pushes to `dev` (and to `main` when told) directly. A push builds the package (Actions > the run > Artifacts
+> `daurade-firmware`) and the site: main's release at delirioux.github.io/daurade, dev's test build under `dev/`.
+A push to `main` with a new `DA_VERSION` (`firmware/src/da_version.h`) also tags it `vX.Y` and makes a GitHub
+release with the package and `docs/RELEASE.md` (the workflow's `release` job: Claude's sandbox cannot push tags).
 
 ## Where Daurade lives
 

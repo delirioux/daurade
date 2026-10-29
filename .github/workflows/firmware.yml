@@ -166,3 +166,28 @@ jobs:
     steps:
       - id: deploy
         uses: actions/deploy-pages@v4
+
+  release:
+    # main with a version that has no tag yet: the tag vX.Y on this commit and a GitHub release with the package
+    # and docs/RELEASE.md as its notes. An existing tag is never moved; a new version (da_version.h) makes the next.
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: daurade-firmware
+          path: dist
+      - name: Tag and release (once per version)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=$(sed -n 's/^#define DA_VERSION "\([^"]*\)".*/\1/p' firmware/src/da_version.h)
+          if git ls-remote --exit-code --tags origin "refs/tags/v$V" >/dev/null; then
+            echo "v$V is already tagged: nothing to do"; exit 0
+          fi
+          PKG=$(ls dist/daurade-*.fwsc | head -1)
+          gh release create "v$V" "$PKG" --target "$GITHUB_SHA" --title "Daurade $V" --notes-file docs/RELEASE.md
