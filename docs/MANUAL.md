@@ -42,7 +42,7 @@ never change a setting.
 | **ARC** (ENV) | **ARC** on: the song shapes itself, intro, main, build, drop, solo, breakdown and round again with a new hook; off: the main groove on and on. **BUILD** 4, 8 or 16 bars. **DROP** AUTO: the arc drops after a build. **SOLO** AUTO: the arc plays a solo. |
 | **SOLO** (SEQ) | **SPEED** 1/8, triplets or 1/16. **BEND** how much it bends into notes. **RANGE** 1, 2 or 3 octaves. **BARS** 2, 4 or 8. |
 | **SETS** (SAVE) | Eight sets: the whole groove, style and all. **SET** picks one, **LOAD** and **STORE** turned right do it, **CLEAR** turned right three times empties it. |
-| **MENU** (hold HOME) | **COLOR** the palette: NEBULA by default, and Felucca's. **LOOK** FLAT or LINE. |
+| **MENU** (hold HOME) | **COLOR** the palette: NEBULA by default, and Felucca's. **LOOK** FLAT or LINE. The page shows the version and the **CPU**: the audio's load, read every half second, as Tuna shows it (the browser measures none: 0 %). |
 
 A style sets its tempo, sounds, key, chord loop, groove, drums and space. MIX, ARC, SOLO and MENU stay yours.
 

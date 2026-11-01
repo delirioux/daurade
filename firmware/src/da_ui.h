@@ -55,6 +55,8 @@ typedef struct {
     bool sets_changed;                    /* the glue saves the sets while stopped */
     uint32_t frame;
     int batt;                             /* 0..3 bars, 4 = USB power */
+    int cpu;                              /* the audio's load, 0..100 % (the glue: Felucca's song.cpu_q8) */
+    int cpu_shown, cpu_ms;                /* MENU's CPU: the load as shown, taken every DU_CPU_MS (Tuna's INFO_CPU_MS) */
     bool changed;                         /* a setting changed: the glue applies it (sound, mix) and saves it later */
     uint32_t sig_head, sig_card[4], sig_foot;
     bool force;

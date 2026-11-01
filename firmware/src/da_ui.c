@@ -691,13 +691,21 @@ static void du_panel_sets(da_ui *u)
     }
 }
 
+/* MENU: what Daurade is, and the CPU (the audio's load) as Tuna's MENU > SYSTEM > INFO shows it: a row, its value in
+ * the theme and the unit small beside it, taken every DU_CPU_MS */
+#define DU_CPU_MS 500
 static void du_panel_menu(da_ui *u)
 {
-    (void)u;
-    cv_text_on(30, 20, &AF_M, "DAURADE " DA_VERSION, T_TEXT, T_SURF);
-    cv_text_on(30, 44, &AF_S, "GROOVES IN CHROME FOR THE FM-1", T_MID, T_SURF);
-    cv_text_on(30, 64, &AF_S, "ON FELUCCA, AFTER TUNA", T_MID, T_SURF);
-    cv_text_on(30, 84, &AF_S, "GPL-3.0, HOME CLOSES", T_DIM, T_SURF);
+    char cpu[8];
+    cv_text_on(30, 14, &AF_M, "DAURADE " DA_VERSION, T_TEXT, T_SURF);
+    cv_text_on(30, 38, &AF_S, "GROOVES IN CHROME FOR THE FM-1", T_MID, T_SURF);
+    cv_text_on(30, 54, &AF_S, "ON FELUCCA, AFTER TUNA", T_MID, T_SURF);
+    cv_rect(30, 72, 180, 1, T_LINE);
+    int32_t vy = 80;
+    cv_text_on(30, vy, &AF_M, "CPU", T_TEXT, T_SURF);
+    du_fmt_int(cpu, du_clampi(u->cpu_shown, 0, 100));
+    cv_text_r(cv_text_r(210, vy + AF_M.asc - AF_S.asc, &AF_S, "%", T_MID, T_SURF) - 3, vy, &AF_M, cpu, T_THEME, T_SURF);
+    cv_text_on(30, 102, &AF_S, "GPL-3.0, HOME CLOSES", T_DIM, T_SURF);
 }
 
 static void du_draw_panel(da_ui *u)
@@ -983,6 +991,10 @@ void du_key(da_ui *u, int note, bool down)
 void du_tick(da_ui *u, int ms)
 {
     da_groove *g = u->g;
+    if ((u->cpu_ms -= ms) <= 0) {                  /* MENU's CPU: a reading every DU_CPU_MS, not every frame */
+        u->cpu_ms = DU_CPU_MS;
+        u->cpu_shown = u->cpu;
+    }
     da_seen n;
     while (da_feed_pop(g, &n))
         ;                                          /* (the panels read the groove's own state) */

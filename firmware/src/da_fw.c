@@ -369,6 +369,7 @@ static void da_frame(void)
     song.playing = da_g.playing;                             /* (PLAY's green LED, Felucca's meters) */
     da_leds();
     da_u.batt = (int)batt_shown();
+    da_u.cpu = (int)(song.cpu_q8 * 100u / 256u);
     du_tick(&da_u, dt > 100u ? 100 : (int)dt);
     if (first) {
         du_draw_all(&da_u);
