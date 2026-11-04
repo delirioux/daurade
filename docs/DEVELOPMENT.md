@@ -4,7 +4,7 @@ The working notes behind Daurade: the agreements, how the work flows, why the co
 stands and what comes next. What Daurade is and how to play it is in the [README](../README.md) and the
 [manual](MANUAL.md).
 
-Status: 28 October 2026. Version 0.1 built by CI, installed from the site and playing on an FM-1; released on `main`.
+Status: 4 November 2026. Version 1.0: 0.1 played on an FM-1, then the CPU on MENU and the flash of newer FM-1 units.
 
 ## Agreements
 

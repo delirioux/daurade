@@ -1,6 +1,6 @@
 # Daurade manual
 
-Daurade 0.1. Every page, every card. Four parts play: **STABS** (the chord loop), **BASS**, **LEAD** (the hook, the
+Daurade 1.0. Every page, every card. Four parts play: **STABS** (the chord loop), **BASS**, **LEAD** (the hook, the
 robot, the solo, and whatever you play on the keys) and **DRUMS**. Knob 1 to 4 turn the four cards on the screen.
 A page's button pressed again goes to its second page where it has one.
 

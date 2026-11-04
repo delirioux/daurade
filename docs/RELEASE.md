@@ -1,4 +1,10 @@
-# Daurade 0.1
+# Daurade 1.0
+
+- MENU (hold HOME) shows the CPU, the audio's load, as Tuna does.
+- Newer FM-1 units with a UC25HQ80 flash save their settings and sets again (Felucca's fix for its issue #320):
+  0.1 did not recognise that flash and ran without saving.
+
+## Daurade 0.1
 
 The first release.
 
