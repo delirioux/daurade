@@ -2,5 +2,5 @@
 /* Daurade's version: the splash, MENU, the package (tools/build.py --release, the workflow) */
 #ifndef DA_VERSION_H
 #define DA_VERSION_H
-#define DA_VERSION "1.0"
+#define DA_VERSION "1.0.1"
 #endif

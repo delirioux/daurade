@@ -230,7 +230,11 @@ static void fm1_main(void)
         fm1_delay_ms(10);
         master_poll();
     }
+#if !FELUCCA_DAURADE
     kb_boot_hold = 0;
+#endif
+    /* (Daurade: Felucca's keyboard stays silent for good. Daurade plays the keys itself; with Felucca's keyboard on as
+     * well every key also played its own raw note on the first track and out on MIDI: two notes for one key) */
     lcd_fill(0, 0, 240, 240, T_BG);
     scrn.idle = fm1_ms;                        /* (MENU > SCREEN OFF: from here) */
 

@@ -1,3 +1,10 @@
+# Daurade 1.0.1
+
+Every key plays one note. Felucca's own keyboard was still on next to Daurade's: each key also played its raw note on the
+first track and out on MIDI, so a key off the scale sounded a semitone clash. It now stays silent.
+
+Runs on the FM-1. To go back: Felucca's or Tuna's installer, or the official V15.
+
 # Daurade 1.0
 
 - MENU (hold HOME) shows the CPU, the audio's load, as Tuna does.
