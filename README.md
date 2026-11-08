@@ -1,3 +1,5 @@
+**Patched for FM-1 units with the new chipset.**
+
 # Daurade
 
 <p align="center"><img src="docs/daurade-logo.png" alt="Daurade" width="256"></p>
