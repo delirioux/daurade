@@ -1,10 +1,10 @@
 {
-  "what": "Grooves in chrome: filtered, pumping, robotic. Press PLAY for a loop that opens over sixteen bars, a mix that pumps on every kick, a robot voice singing the hook and crisp drums. Ten styles; steer it with four knobs, drop it, set off a solo, play the lead on the keys.",
+  "what": "Grooves in chrome: filtered, pumping, robotic. Press PLAY and Daurade plays a filtered loop that opens over sixteen bars, a mix that pumps on every kick, a robot voice singing the hook and crisp drums. Ten styles; steer it with four knobs, drop it, set off a solo or play the lead yourself.",
   "author": "delirioux",
   "kinds": [
     "groove"
   ],
   "play": "https://delirioux.github.io/daurade/try/",
   "image": "docs/card.png",
-  "color": "#D8DCE6"
+  "color": "#D8E2EA"
 }
