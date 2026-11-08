@@ -12,8 +12,8 @@ Status: 8 November 2026. Version 1.0.1: 0.1 played on an FM-1, then the CPU on M
 | What | Agreed |
 | --- | --- |
 | Home | GitHub, `github.com/delirioux/daurade`, branch `main`; unfinished work on `dev` until it has run on the FM-1. |
-| Upstream | A fork of Flyfish and [Tuna](https://github.com/delirioux/tuna) (themselves forks of [Felucca](https://github.com/hugelton/Felucca)). Never push to Tuna or Felucca. Felucca's five engines are a submodule, `firmware/engines`. |
-| Name | Ocean animals, as Tuna, Flyfish and Makohai: the gilt-head bream, silver with a gold band. The logo: four chrome knobs, two by two, and a bladed wordmark. |
+| Upstream | A fork of [Flyfish](https://github.com/delirioux/flyfish) and [Tuna](https://github.com/delirioux/tuna) (themselves forks of [Felucca](https://github.com/hugelton/Felucca)). Never push to Tuna or Felucca. Felucca's five engines are a submodule, `firmware/engines`. |
+| Name | Ocean animals, as Tuna, Flyfish and [Makohai](https://github.com/delirioux/makohai): the gilt-head bream, silver with a gold band. The logo: four chrome knobs, two by two, and a bladed wordmark. |
 | What it is | A groove machine: filtered loops, a pumping mix, a robot voice, very crisp drums. Its sounds and styles are its own; the repository names no artist, record or film as a model, in code, docs or history. |
 | Language | English throughout: code, comments, commits, docs. |
 | Licence | GPL-3.0-only. The drum one-shots are synthesized by `tools/da_drums.py` and dedicated to the public domain (CC0). |

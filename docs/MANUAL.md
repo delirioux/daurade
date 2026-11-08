@@ -31,7 +31,7 @@ never change a setting.
 | Page (button) | Cards |
 | --- | --- |
 | **PLAY** (HOME) | **SWEEP** the filter's ceiling; over every sixteen bars it breathes from just under half of it up to all of it, and falls back over the last two (the footer's sixteen dashes). **PUMP** how deep the mix ducks on each kick. **VOICE** how much of the robot: off, the hook in the second half of every eight bars, or all the way. **ENERGY** density and drive: ghost notes, sixteenth hats, extra chops. |
-| **SOUND** (FX) | **STABS**, **BASS**, **LEAD**: ten sounds each. **DRUMS**: the kit, CRISP (Daurade's own one-shots), SESSION or MACHINE (Felucca's DRUM engine). |
+| **SOUND** (FX) | **STABS**, **BASS**, **LEAD**: ten sounds each. **DRUMS**: the kit, CRISP (Daurade's own one-shots), SESSION or MACHINE ([Felucca](https://github.com/hugelton/Felucca)'s DRUM engine). |
 | **TONE** (FX again) | **RESO** the swept filter's resonance. **DRIVE** saturation. **PHASER**. **CRUSH** bits and rate, down from clean. |
 | **VOICE** (LFO) | The robot. **VOWELS** the two vowels it talks between (AH-EE, OH-AH, OO-EE, EE-AH, AH-OH), or PHRASE: a vowel per note, AH EH OH EH AH EH EH EH, each gliding into the next and the phrase starting over with every hook (SLOW JAM's own). **SHIFT** its formants, -12 to +12. **TALK** how fast it talks (1/16 to 1/2). **GLIDE** between notes. |
 | **KEY** (SCL) | **KEY** the root. **SCALE** DORIAN, MINOR, MAJOR, MIXOLYDIAN, LYDIAN, HARMONIC MINOR. **CHORDS** one of twelve chord loops. **BARS** a chord lasts 1, 2 or 4 bars. |
@@ -42,7 +42,7 @@ never change a setting.
 | **ARC** (ENV) | **ARC** on: the song shapes itself, intro, main, build, drop, solo, breakdown and round again with a new hook; off: the main groove on and on. **BUILD** 4, 8 or 16 bars. **DROP** AUTO: the arc drops after a build. **SOLO** AUTO: the arc plays a solo. |
 | **SOLO** (SEQ) | **SPEED** 1/8, triplets or 1/16. **BEND** how much it bends into notes. **RANGE** 1, 2 or 3 octaves. **BARS** 2, 4 or 8. |
 | **SETS** (SAVE) | Eight sets: the whole groove, style and all. **SET** picks one, **LOAD** and **STORE** turned right do it, **CLEAR** turned right three times empties it. |
-| **MENU** (hold HOME) | **COLOR** the palette: NEBULA by default, and Felucca's. **LOOK** FLAT or LINE. The page shows the version and the **CPU**: the audio's load, read every half second, as Tuna shows it (the browser measures none: 0 %). |
+| **MENU** (hold HOME) | **COLOR** the palette: NEBULA by default, and Felucca's. **LOOK** FLAT or LINE. The page shows the version and the **CPU**: the audio's load, read every half second, as [Tuna](https://github.com/delirioux/tuna) shows it (the browser measures none: 0 %). |
 
 A style sets its tempo, sounds, key, chord loop, groove, drums and space. MIX, ARC, SOLO and MENU stay yours.
 

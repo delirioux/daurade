@@ -1,9 +1,9 @@
 # Daurade 1.0.1
 
-Every key plays one note. Felucca's own keyboard was still on next to Daurade's: each key also played its raw note on the
+Every key plays one note. [Felucca](https://github.com/hugelton/Felucca)'s own keyboard was still on next to Daurade's: each key also played its raw note on the
 first track and out on MIDI, so a key off the scale sounded a semitone clash. It now stays silent.
 
-Runs on the FM-1. To go back: Felucca's or Tuna's installer, or the official V15.
+Runs on the FM-1. To go back: Felucca's or [Tuna](https://github.com/delirioux/tuna)'s installer, or the official V15.
 
 # Daurade 1.0
 

@@ -4,7 +4,7 @@
 
 - **The drum kit**: Daurade's own, seven one-shots synthesized by `tools/da_drums.py`, CC0 1.0
   ([attribution](assets/samples-cc0/ATTRIBUTION.txt))
-- **[Tuna](https://github.com/delirioux/tuna)** and Flyfish (delirioux, GPL-3.0-only): the frame Daurade's screen is
+- **[Tuna](https://github.com/delirioux/tuna)** and [Flyfish](https://github.com/delirioux/flyfish) (delirioux, GPL-3.0-only): the frame Daurade's screen is
   drawn in, the firmware glue it is shaped after, the single-precision maths (`tuna_libm`), the FM6 patches REED EP,
   SLAP, BRASS and FRETLESS and the CLAV, GUITAR, SAW and UPRIGHT voicings
 - **Felucca** (below): the hardware layer, the engines, the effects, the drawing, the installer's package format

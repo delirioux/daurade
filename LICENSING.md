@@ -1,6 +1,6 @@
 # Daurade licensing
 
-Daurade is a fork of Flyfish and [Tuna](https://github.com/delirioux/tuna), themselves forks of
+Daurade is a fork of [Flyfish](https://github.com/delirioux/flyfish) and [Tuna](https://github.com/delirioux/tuna), themselves forks of
 [Felucca](https://github.com/hugelton/Felucca): GPL-3.0-only, as they are. Its own files (`firmware/src/da_*`,
 `tests/da_*`, `tools/da_*`, `tools/draw_logo.py`, `web/da_*`, `web/emu/da_*`, `docs/`, `assets/logo.*`) are
 Copyright (C) 2026 delirioux, GPL-3.0-only; the maths (`tuna_libm.c`, `tuna_sys.h`) are Tuna's. The drum one-shots
