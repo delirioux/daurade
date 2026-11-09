@@ -1,6 +1,6 @@
 # Daurade manual
 
-Daurade 1.0.1. Every page, every card. Four parts play: **STABS** (the chord loop), **BASS**, **LEAD** (the hook, the
+Daurade 1.0.2. Every page, every card. Four parts play: **STABS** (the chord loop), **BASS**, **LEAD** (the hook, the
 robot, the solo, and whatever you play on the keys) and **DRUMS**. Knob 1 to 4 turn the four cards on the screen.
 A page's button pressed again goes to its second page where it has one.
 
@@ -17,7 +17,8 @@ Hold it: it stays dropped until you let go, and comes back on the next bar line.
 **SEQ is SOLO.** The LEAD plays a solo from the next beat, on the style's solo sound, for SOLO's BARS; SEQ again
 stops it. The SOLO page shows meanwhile.
 
-**The keys** play the LEAD, live, snapped to the scale: any key you press is in key. While you hold one, the hook
+**The keys** play the LEAD, live, as you press them: an off note is yours to play. MENU's **SNAP** (hold HOME,
+KNOB 3) snaps them to the scale instead, so any key you press is in key. While you hold one, the hook
 makes way. OCT- and OCT+ move the keys' octave. The keys' LEDs glow on the notes of the chord playing. The keys
 never change a setting.
 
@@ -42,7 +43,7 @@ never change a setting.
 | **ARC** (ENV) | **ARC** on: the song shapes itself, intro, main, build, drop, solo, breakdown and round again with a new hook; off: the main groove on and on. **BUILD** 4, 8 or 16 bars. **DROP** AUTO: the arc drops after a build. **SOLO** AUTO: the arc plays a solo. |
 | **SOLO** (SEQ) | **SPEED** 1/8, triplets or 1/16. **BEND** how much it bends into notes. **RANGE** 1, 2 or 3 octaves. **BARS** 2, 4 or 8. |
 | **SETS** (SAVE) | Eight sets: the whole groove, style and all. **SET** picks one, **LOAD** and **STORE** turned right do it, **CLEAR** turned right three times empties it. |
-| **MENU** (hold HOME) | **COLOR** the palette: NEBULA by default, and Felucca's. **LOOK** FLAT or LINE. The page shows the version and the **CPU**: the audio's load, read every half second, as [Tuna](https://github.com/delirioux/tuna) shows it (the browser measures none: 0 %). |
+| **MENU** (hold HOME) | **COLOR** the palette: NEBULA by default, and Felucca's. **LOOK** FLAT or LINE. **SNAP** the keys: OFF, as you press them (the default), or ON, onto the scale. The page shows the version and the **CPU**: the audio's load, read every half second, as [Tuna](https://github.com/delirioux/tuna) shows it (the browser measures none: 0 %). |
 
 A style sets its tempo, sounds, key, chord loop, groove, drums and space. MIX, ARC, SOLO and MENU stay yours.
 

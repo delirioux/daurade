@@ -201,6 +201,7 @@ void da_defaults(da_settings *s)
     s->solo_bars = 4;
     s->palette = 10;                               /* NEBULA (ui_palettes.h UI_NEBULA_INDEX) */
     s->look = 0;
+    s->keysnap = 0;                                /* (the keys as pressed) */
 }
 
 void da_settings_fix(da_settings *s)
@@ -248,6 +249,7 @@ void da_settings_fix(da_settings *s)
     s->solo_bars = (uint8_t)(s->solo_bars >= 8 ? 8 : s->solo_bars >= 4 ? 4 : 2);
     s->bpm = (uint8_t)clampi(s->bpm ? s->bpm : 124, 60, 200);
     s->look = (uint8_t)(s->look ? 1 : 0);
+    s->keysnap = (uint8_t)(s->keysnap == 1);       /* (an old record's padding: OFF) */
     if (s->song > 999)
         s->song = 0;
 }
@@ -692,6 +694,7 @@ static void bar_line(da_groove *g)
         g->s.solo_bars = old.solo_bars;
         g->s.palette = old.palette;
         g->s.look = old.look;
+        g->s.keysnap = old.keysnap;
         if (keep_song >= 0)
             g->s.song = (uint16_t)keep_song;
         g->next_style = -1;
@@ -1173,7 +1176,7 @@ void da_key(da_groove *g, int k, int note, bool down)
     if (k < 0 || k >= 27)
         return;
     if (down) {
-        int n = da_snap(&g->s, note);
+        int n = g->s.keysnap ? da_snap(&g->s, note) : note;   /* (SNAP on: in the key; off: as pressed) */
         if (g->key_note[k] >= 0)
             emit(g, 0, DA_LEAD, g->key_note[k], 0);
         if (!g->keys)                              /* the hook makes way */

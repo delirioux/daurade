@@ -14,7 +14,7 @@ very crisp drums. Ten styles on two sides, CHROME and SESSION. You steer it with
 solo, play the lead yourself on the keys. Built on [Tuna](https://github.com/delirioux/tuna) and
 [Felucca](docs/FELUCCA.md).
 
-> **Version 1.0.1.** Runs on the FM-1. Built with no warranty. [Felucca](https://github.com/hugelton/Felucca)'s or Tuna's installer, or the official V15,
+> **Version 1.0.2.** Runs on the FM-1. Built with no warranty. [Felucca](https://github.com/hugelton/Felucca)'s or Tuna's installer, or the official V15,
 > takes the FM-1 back.
 
 <p align="center"><img src="docs/daurade-play.gif" alt="PLAY: the chords, the filter's sweep, the pump" width="240"></p>
@@ -77,9 +77,9 @@ build with a snare roll and the filter opening, a drop, a solo, a breakdown, and
 | PLAY | start (with the intro) / stop |
 | REC | DROP: tapped, everything but the filtered loop drops out for two bars and slams back on the bar line; held, it stays dropped until you let go |
 | SEQ | SOLO: a solo from the next beat, over SOLO's bars; again, it stops. Shows the SOLO page |
-| keys | the lead, live, snapped to the scale: whatever you press is in key. The keys only ever play music |
+| keys | the lead, live, as you press them; MENU's SNAP on: snapped to the scale. The keys only ever play music |
 | OCT- / OCT+ | the keys' octave |
-| HOME | PLAY; hold it: MENU (COLOR, LOOK) |
+| HOME | PLAY; hold it: MENU (COLOR, LOOK, SNAP) |
 | FX | SOUND (the four parts' sounds), again: TONE (RESO DRIVE PHASER CRUSH) |
 | LFO | VOICE (VOWELS SHIFT TALK GLIDE) |
 | SCL | KEY (KEY SCALE CHORDS BARS) |

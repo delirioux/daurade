@@ -134,7 +134,7 @@ static const du_cdef DU_CARDS[DU_PAGES][4] = {
                     C_VALS("BARS", solo_bars, DV_SOLO)},
     [DU_PG_SETS] = {{"SET", 0, DC_SETSEL, 0, DA_SETS - 1, 1, 0, 0}, {"LOAD", 0, DC_LOAD, 0, 0, 1, 0, 0},
                     {"STORE", 0, DC_STORE, 0, 0, 1, 0, 0}, {"CLEAR", 0, DC_CLEAR, 0, 0, 1, 0, 0}},
-    [DU_PG_MENU] = {{"COLOR", DS_(palette), DC_PAL, 0, 10, 1, 0, 0}, C_LIST("LOOK", look, DN_LOOK), C_OFF, C_OFF},
+    [DU_PG_MENU] = {{"COLOR", DS_(palette), DC_PAL, 0, 10, 1, 0, 0}, C_LIST("LOOK", look, DN_LOOK), C_LIST("SNAP", keysnap, DN_ONOFF), C_OFF},
 };
 static const char *const DU_PAGE_NAMES[DU_PAGES] = {"PLAY", "SOUND", "TONE", "VOICE", "KEY", "GROOVE", "DRUMS", "MIX",
                                                     "SPACE", "ARC", "SOLO", "SETS", "MENU"};
@@ -810,6 +810,7 @@ static void du_load_set(da_ui *u, int i)
     da_settings s = u->sets[i];
     s.palette = g->s.palette;
     s.look = g->s.look;
+    s.keysnap = g->s.keysnap;
     da_settings_fix(&s);
     da_all_off(g);
     g->s = s;

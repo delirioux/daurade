@@ -1,3 +1,12 @@
+# Daurade 1.0.2
+
+The keys play what you press: a note off the scale is yours to play. MENU's new SNAP (hold HOME, KNOB 3) snaps
+them to the scale as before; it is off by default, and kept with the settings.
+
+Each build now carries Daurade's own identity for the FM-1 Firmware Hub.
+
+Runs on the FM-1. To go back: Felucca's or [Tuna](https://github.com/delirioux/tuna)'s installer, or the official V15.
+
 # Daurade 1.0.1
 
 Every key plays one note. [Felucca](https://github.com/hugelton/Felucca)'s own keyboard was still on next to Daurade's: each key also played its raw note on the

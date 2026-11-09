@@ -155,6 +155,22 @@ int main(void)
     da_key(&g, 1, 54, true);
     CHECK(on[DA_LEAD] == 1, "a key plays the lead");
     da_key(&g, 1, 54, false);
+    {   /* SNAP: OFF (the default) the key as pressed, ON onto the scale */
+        int off_out = 0, on_out = 0;
+        for (int n = 53; n <= 79; ++n) {
+            da_key(&g, n - 53, n, true);
+            off_out += g.key_note[n - 53] != n;
+            da_key(&g, n - 53, n, false);
+        }
+        g.s.keysnap = 1;
+        for (int n = 53; n <= 79; ++n) {
+            da_key(&g, n - 53, n, true);
+            on_out += da_snap(&g.s, g.key_note[n - 53]) != g.key_note[n - 53];
+            da_key(&g, n - 53, n, false);
+        }
+        g.s.keysnap = 0;
+        CHECK(off_out == 0 && on_out == 0, "SNAP: OFF as pressed (%d off), ON in the scale (%d out)", off_out, on_out);
+    }
     CHECK(off[DA_LEAD] >= 1, "its release lets go");
     da_play(&g, false);
     /* a bad record: every field back in range */
