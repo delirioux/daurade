@@ -18,7 +18,7 @@ OUT_DIR, whose start page then links the test build.
 VERSION is the build's (the commit); Daurade's own (X.Y) is DA_VERSION in firmware/src/da_version.h.
 
 The package must be one made by tools/fm1pkg_make.py (Felucca's own loader, no vendor files); its identity
-(FM-1_9xx) is what the FM-1 must report after the install.
+(FM-1_47328723, Daurade's) is what the FM-1 must report after the install.
 """
 import json
 import os
@@ -50,8 +50,8 @@ def main(pkg, build, out):
     pkg, out = Path(pkg), Path(out)
     raw = pkg.read_bytes()
     product = product_of(raw)
-    if not re.fullmatch(r"FM-1_9\d\d", product):
-        raise SystemExit(f"{pkg}: identity {product!r} is not a Felucca-built package (FM-1_9xx)")
+    if not re.fullmatch(r"FM-1_(9\d\d|47\d{6})", product):
+        raise SystemExit(f"{pkg}: identity {product!r} is not a Felucca-built package (FM-1_9xx, FM-1_47xxxxxx)")
     if b"FELUCCA-LOADER-1" not in raw:              # Felucca's loader: never publish a package with vendor files
         raise SystemExit(f"{pkg}: no Felucca loader in it; the site ships only fm1pkg_make.py packages")
     html = (HERE / "daurade_installer.html").read_text(encoding="utf-8")
