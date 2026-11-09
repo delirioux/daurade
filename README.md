@@ -1,5 +1,7 @@
 **Patched for FM-1 units with the new chipset.**
 
+**[Quick cheat sheet](docs/CHEATSHEET.md): every control and what it does.**
+
 # Daurade
 
 <p align="center"><img src="docs/daurade-logo.png" alt="Daurade" width="256"></p>
