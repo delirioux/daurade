@@ -198,7 +198,7 @@ static void da_apply(void)
     da_applied_ok = true;
 }
 
-/* ---- the power-on screen: Daurade's logo (tools/da_logo.py: 176 px, 8 greys, rows run-length coded) and the
+/* ---- the power-on screen: Daurade's logo (tools/da_logo.py: 176 px, 8 colours (chrome and gold), rows run-length coded) and the
  * Felucca it runs on; main.c holds it 0.75 s ---- */
 #include "da_logo.inc"
 #define DA_SPLASH_MS 750u

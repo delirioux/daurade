@@ -7,13 +7,15 @@ Usage: draw_logo.py [ACCENT_COLOUR] [OUT.svg]"""
 # black ground, a ring, audio bars, a line-art fish in one accent colour + cream,
 # music notes, a little knob box (four knobs, 2 x 2, like the FM-1), a wide italic name
 # (Daurade's: a steep chrome italic with long aggressive blades, speed streaks and glints).
-# Daurade's own touches: silver/chrome accent, the brow band across the bream's forehead,
+# Daurade's own touches: silver/chrome accent with gold tints (the gilt brow band across the bream's forehead, the
+# knobs, the glints, the blades behind the wordmark),
 # and a few glints round the notes.
 import math, sys
 
 ACC = sys.argv[1] if len(sys.argv) > 1 else "#b4bcc7"   # the accent colour (silver)
 OUT = sys.argv[2] if len(sys.argv) > 2 else str(__import__("pathlib").Path(__file__).resolve().parent.parent / "assets" / "logo.svg")
 CREAM, INK, BG = "#eef1f5", "#050608", "#000000"   # cool white instead of cream, to match the chrome
+GOLD = "#d8a93e"                                    # gold tints: the bream's gilt forehead band, the knobs, the glints
 W = H = 1024
 CX, CY, R = 512, 440, 362
 
@@ -158,7 +160,7 @@ def knob(x, y):
         f'<line x1="{x + 30*math.cos(a):.1f}" y1="{y + 30*math.sin(a):.1f}" x2="{x + 37*math.cos(a):.1f}" y2="{y + 37*math.sin(a):.1f}"/>'
         for a in [math.radians(d) for d in range(135, 406, 45)])
     return (f'<g stroke="{INK}" stroke-width="3" stroke-linecap="round">{ticks}</g>'
-            f'<circle cx="{x}" cy="{y}" r="22" fill="{ACC}" stroke="{INK}" stroke-width="5"/>'
+            f'<circle cx="{x}" cy="{y}" r="22" fill="{GOLD}" stroke="{INK}" stroke-width="5"/>'
             f'<line x1="{x}" y1="{y}" x2="{x}" y2="{y - 16}" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>')
 
 
@@ -168,6 +170,7 @@ BX, BY, BW, BH = 512 - 95, 596, 190, 176
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
 <defs>
 <linearGradient id="chrome" gradientUnits="userSpaceOnUse" x1="0" y1="{TY0}" x2="0" y2="{TY0 + 7*U}"><stop offset="0" stop-color="#ffffff"/><stop offset="0.18" stop-color="#dfe5ee"/><stop offset="0.3" stop-color="#7b8593"/><stop offset="0.34" stop-color="#ffffff"/><stop offset="0.5" stop-color="#2c323b"/><stop offset="0.53" stop-color="#ffffff"/><stop offset="0.72" stop-color="#aeb6c2"/><stop offset="0.88" stop-color="#f4f7fb"/><stop offset="1" stop-color="#6f7885"/></linearGradient>
+<linearGradient id="goldchrome" gradientUnits="userSpaceOnUse" x1="0" y1="{TY0 - 2*U}" x2="0" y2="{TY0 + 9*U}"><stop offset="0" stop-color="#fff6d8"/><stop offset="0.22" stop-color="#f0cf73"/><stop offset="0.36" stop-color="#8a6118"/><stop offset="0.42" stop-color="#fff3c4"/><stop offset="0.55" stop-color="#5a3d0c"/><stop offset="0.6" stop-color="#f7dc8a"/><stop offset="0.8" stop-color="#c9932c"/><stop offset="1" stop-color="#6e4c12"/></linearGradient>
 <clipPath id="ring"><circle cx="{CX}" cy="{CY}" r="{R - 14}"/></clipPath></defs>
 <rect width="{W}" height="{H}" fill="{BG}"/>
 <circle cx="{CX}" cy="{CY}" r="{R}" fill="#07090d" stroke="{ACC}" stroke-width="11"/>
@@ -195,19 +198,19 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
   <path d="{gill_spot}" fill="{ACC}"/>
   <path d="{pect}" fill="{CREAM}" stroke="{ACC}" stroke-width="6" stroke-linejoin="round"/>
   <path d="{pelvic}" fill="{CREAM}" stroke="{ACC}" stroke-width="5" stroke-linejoin="round"/>
-  <path d="{band}" fill="none" stroke="{ACC}" stroke-width="14" stroke-linecap="round"/>
+  <path d="{band}" fill="none" stroke="{GOLD}" stroke-width="14" stroke-linecap="round"/>
   <path d="{mouth}" fill="none" stroke="{ACC}" stroke-width="6" stroke-linecap="round"/>
   <circle cx="800" cy="320" r="18" fill="{CREAM}" stroke="{ACC}" stroke-width="5"/>
   <circle cx="805" cy="319" r="8.5" fill="{INK}"/>
 </g>
 
 <g fill="{CREAM}">{note(756, 186, 0.75)}{note(806, 152, 0.9, True)}{note(880, 226, 0.7)}</g>
-<g fill="{ACC}">{glint(724, 120, 16)}{glint(912, 160, 12)}{glint(860, 92, 9)}</g>
+<g fill="{GOLD}">{glint(724, 120, 16)}{glint(912, 160, 12)}{glint(860, 92, 9)}</g>
 
 <g stroke="{ACC}" stroke-linecap="round"><line x1="70" y1="{TY0 + 22}" x2="190" y2="{TY0 + 22}" stroke-width="7"/><line x1="40" y1="{TY0 + 52}" x2="176" y2="{TY0 + 52}" stroke-width="5" opacity="0.7"/><line x1="88" y1="{TY0 + 80}" x2="164" y2="{TY0 + 80}" stroke-width="4" opacity="0.45"/><line x1="860" y1="{TY0 + 30}" x2="972" y2="{TY0 + 30}" stroke-width="5" opacity="0.7"/><line x1="846" y1="{TY0 + 62}" x2="950" y2="{TY0 + 62}" stroke-width="4" opacity="0.45"/></g>
 <path d="{spikes}" fill="none" stroke="{BG}" stroke-width="16" stroke-linejoin="miter"/>
 <path d="{word}" fill="none" stroke="{BG}" stroke-width="22" stroke-linejoin="round"/>
-<path d="{spikes}" fill="url(#chrome)" stroke="#2a2f37" stroke-width="3" stroke-linejoin="miter"/>
+<path d="{spikes}" fill="url(#goldchrome)" stroke="#3a2a0c" stroke-width="3" stroke-linejoin="miter"/>
 <path d="{word}" fill="url(#chrome)" fill-rule="evenodd" stroke="#2a2f37" stroke-width="3" stroke-linejoin="round"/>
 <g fill="#ffffff">{glint(W/2 + 268, TY0 + 4, 30)}{glint(W/2 - 296, TY0 + 96, 16)}{glint(W/2 + 40, TY0 + 2, 12)}</g>
 </svg>'''

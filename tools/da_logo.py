@@ -22,9 +22,10 @@ def rgb565(c):
     return (r >> 3) << 11 | (g >> 2) << 5 | b >> 3
 
 
-# the logo's colours: the background first (the corner), the ring's black, then the chrome from dark to white
-PALETTE = [(0, 0, 0), (7, 9, 13), (40, 45, 52), (90, 97, 108), (150, 158, 170), (196, 203, 212), (232, 236, 241),
-           (255, 255, 255)]
+# the logo's colours: the background first (the corner), the ring's black, the chrome from dark to white, and gold
+# (the brow band, the knobs, the glints, the blades)
+PALETTE = [(0, 0, 0), (7, 9, 13), (40, 45, 52), (150, 158, 170), (196, 203, 212), (232, 236, 241), (255, 255, 255),
+           (216, 169, 62)]
 
 
 def build():
