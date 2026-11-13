@@ -7,5 +7,6 @@
   "play": "https://delirioux.github.io/daurade/try/",
   "cheat": "https://github.com/delirioux/daurade/blob/main/docs/CHEATSHEET.md",
   "image": "docs/card.png",
-  "color": "#D8E2EA"
+  "color": "#D8E2EA",
+  "sounds": "own: drum kit synthesized by tools/da_drums.py, CC0 1.0; drums synthesized by Felucca's tools/gen_waves.py (Hügelton Sample Pack, GPL-3.0-only)"
 }
