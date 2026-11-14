@@ -123,3 +123,5 @@ sysroot). Design notes and the plan: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 GPL-3.0-only. Daurade by delirioux, written with Claude; a fork of Flyfish and Tuna (delirioux), forks of Felucca by
 Leo Kuroshita, Hügelton Instruments; the web installer is Felucca's. The drum samples are CC0. See
 [CREDITS.md](CREDITS.md) and [LICENSING.md](LICENSING.md).
+
+You can also try Daurade in the browser, no flashing needed, in the free community [FM-1 Emulator](https://fm1-emulator.atst.tools/).
